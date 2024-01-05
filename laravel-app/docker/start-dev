@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ ! -d ./vendor ]; then
+  composer install
+fi
+
+php artisan key:generate
+php artisan storage:link
+php artisan migrate:fresh --seed --seeder=TestDatabaseSeeder
+
+/usr/bin/supervisord -c /etc/supervisord.conf

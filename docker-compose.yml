@@ -65,6 +65,19 @@ services:
       timeout: 10s
       retries: 5
 
+  laravel-app:
+    build:
+      context: .
+      dockerfile: ./laravel-app/docker/Dockerfile
+    volumes:
+      - ./laravel-app/src:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+    networks:
+      - kafka-network
+
 networks:
   kafka-network:
 
