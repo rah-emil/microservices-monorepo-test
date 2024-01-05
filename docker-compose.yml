@@ -78,6 +78,19 @@ services:
     networks:
       - kafka-network
 
+  nest-app1:
+    build:
+      context: .
+      dockerfile: ./nest-app1/docker/Dockerfile
+    volumes:
+      - './nest-app1/src/:/app'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - kafka-network
+
 networks:
   kafka-network:
 
